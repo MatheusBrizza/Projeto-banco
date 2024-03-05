@@ -1,26 +1,22 @@
 package com.banco.senac.projetobanco.model;
 
-import java.math.BigDecimal;
-
-public class CaixaEletronico extends Banco{
+public class ContaBancaria extends Banco{
 
     private Long id;
     private Long numeroConta;
     private Float saldo;
 
+    private String nome;
+
     private Integer senha;
 
-    public CaixaEletronico(Long id, Long numeroConta, Float saldo) {
-        this.id = id;
+    public ContaBancaria(Long numeroConta, Integer senha) {
         this.numeroConta = numeroConta;
-        this.saldo = saldo;
+        this.senha = senha;
     }
 
-    public CaixaEletronico() {
+    public ContaBancaria() {
 
-    }
-    public Long getId() {
-        return id;
     }
 
     public Long getNumeroConta() {
@@ -35,18 +31,25 @@ public class CaixaEletronico extends Banco{
         this.saldo = saldo;
     }
 
+    public Integer getSenha() {
+        return senha;
+    }
+
+    public void setSenha(Integer senha) {
+        this.senha = senha;
+    }
 
     public Float depositar(Float valor) {
-        Float saldoNovo = saldo + valor;
-        return saldoNovo;
+        saldo += saldo + valor;
+        return saldo;
     }
 
     public Float sacar(Float valor) {
         if((saldo - valor) > 0) {
             throw new RuntimeException("valor a sacar não pode ser maior que o saldo na conta");
         } else {
-            Float saldoNovo = saldo - valor;
-            return saldoNovo;
+            saldo -= saldo - valor;
+            return saldo;
         }
     }
 }
