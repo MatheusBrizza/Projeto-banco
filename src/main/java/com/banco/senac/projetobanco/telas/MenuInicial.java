@@ -27,10 +27,12 @@ public class MenuInicial {
             switch (opcao) {
                 case 1:
                     System.out.println("Acessando conta...");
+
                     break;
                 case 2:
                     System.out.println("Criando conta...");
-
+                    MenuCriarConta tela2 = new MenuCriarConta();
+                    tela2.imprimirTelaConta();
                     break;
                 case 3:
                     System.out.println("Indo para Tela de Locações...");
