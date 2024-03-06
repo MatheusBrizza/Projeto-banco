@@ -27,7 +27,8 @@ public class MenuInicial {
             switch (opcao) {
                 case 1:
                     System.out.println("Acessando conta...");
-
+                    MenuAcessarConta tela1 = new MenuAcessarConta();
+                    tela1.AcessarConta();
                     break;
                 case 2:
                     System.out.println("Criando conta...");
