@@ -1,6 +1,8 @@
 package com.banco.senac.projetobanco.telas;
 
-import ch.qos.logback.core.net.server.Client;
+import com.banco.senac.projetobanco.database.CadastrarConta;
+import com.banco.senac.projetobanco.model.ContaBancaria;
+import com.banco.senac.projetobanco.model.enums.TipoPessoa;
 
 import java.util.InputMismatchException;
 import java.util.List;
@@ -27,10 +29,11 @@ public class MenuCriarConta {
             }
             switch (opcao) {
                 case 1:
-                    this.cadastrarContaCliente(console);
+                    cadastrarConta(console);
+                    System.out.println("1");
                     break;
                 case 2:
-                    this.listarDadosCliente(console);
+                    System.out.println("2");
                     break;
                 case 0:
                     System.out.println("Voltando ao Menu Principal...");
@@ -41,101 +44,91 @@ public class MenuCriarConta {
         } while (true);
 
     }
-}private void cadastrarContaCliente(Scanner console){
-    String simOuNao = "";
-    do {
-        CadatroCliente cadatro = cadastrarContaCliente. criar();
+    private void cadastrarConta(Scanner console){
+        String simOuNao = "";
+        do {
+            CadastrarConta cadastro = CadastrarConta.criar();
 
-        System.out.println("informar o tipo de pessoa: (fisica ou juridica)");
-        TipoPessoa tipoPessoa = lerTipoPessoa(console);
+            System.out.println("informar o tipo de pessoa: (fisica ou juridica)");
+            TipoPessoa tipoPessoa = lerTipoPessoa(console);
 
-        System.out.println("informar a UF do cliente:");
-        String uf = console.nextLine().toUpperCase();
+            System.out.println("informar a UF do cliente:");
+            String uf = console.nextLine().toUpperCase();
 
-        System.out.println("Informar a cidade do cliente:");
-        String cidade = console.nextLine();
+            System.out.println("Informar a cidade do cliente:");
+            String cidade = console.nextLine();
 
-        System.out.println("Informar o Cep do cliente:");
-        Interger cep = LerInt(console;
+            System.out.println("Informar o Cep do cliente:");
+            Integer cep = lerInt(console);
 
-        System.out.println("Informar compelmento:");
-        String complemento = console.nextLine();
+            System.out.println("Informar logradouro:");
+            String logradouro = console.nextLine();
 
-        System.out.println("Informar bairro:");
-        String bairro = console.nextLine();
+            System.out.println("Informar número do logradouro:");
+            Integer numero = lerInt(console);
 
-        Endereco endereco = new Endereco(uf,cidade, cep, logradouro, numero, complemento,bairro);
+            System.out.println("Informar compelmento:");
+            String complemento = console.nextLine();
 
-        if(tipoPessoa.equals(TipoPessoa.FISCA)) {
+            System.out.println("Informar bairro:");
+            String bairro = console.nextLine();
 
-            System.out.println("informar o Nome:");
-            String nome = console.next();
+            Endereco endereco = new Endereco(uf,cidade, cep, logradouro, numero, complemento,bairro);
 
-            System.out.println("Informar o tipo documento:(rg, cpf, chh)");
-            TipoDocumneto tipoDocumneto = LerTipoDocumento(console);
+            if(tipoPessoa.equals(TipoPessoa.FISICA)) {
 
-            System.out.println("Informar o número do documento:");
-            Long documento = LerLong(console);
+                System.out.println("informar o Nome:");
+                String nome = console.next();
 
-            Cliente pessoa = new Cliente(nome, documento, tipoDocumneto, endereco);
-            cadastro.adicionar(pessoa);
+                System.out.println("Informar o número do CPF:");
+                Long cpf = lerLong(console);
 
-        } else if (tipoPessoa.equals(TipoPessoa.Juridica)) {
+                ContaBancaria pessoa = new ContaBancaria(nome, cpf, endereco);
+                cadastro.adicionar(pessoa);
 
-            System.out.println("Informar a razão social:");
-            String razaoSocial = console.next();
+            } else if (tipoPessoa.equals(TipoPessoa.JURIDICA)) {
 
-            System.out.println("informar o CNPJ:");
-            Long cnpj = lerLong(console);
+                System.out.println("Informar a razão social:");
+                String razaoSocial = console.next();
 
-            Cliente empresa = new Cliente(razaoSocial, cnpj, endereco);
-            cadatro.adicionar(empresa);
-        }
+                System.out.println("informar o CNPJ:");
+                Long cnpj = lerLong(console);
 
-        System.out.println("deseja cadastrar outro cliente?);
-        simOuNao = console.nextLine();
-        While (simOuNao.equalsIgnoreCase(anotherString:"sim"));
+                ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj, endereco);
+                cadastro.adicionar(empresa);
+            } else {
+                System.out.println("Tipo de pessoa errada! escolher entre física ou jurídica");
+            }
+
+            System.out.println("deseja cadastrar outro cliente?");
+            simOuNao = console.nextLine();
+        }   while (simOuNao.equalsIgnoreCase("sim"));
     }
 
-    private void ListarClientes(Scanner console){
-        CadastroClientes cadasto = CadastroClienetes.criar();
-        List<Cliente> clientes = cadastro.getClientes();
+    private void listarClientes(Scanner console){
+        CadastrarConta cadastro = CadastrarConta.criar();
+        List<ContaBancaria> contas = cadastro.getContas();
 
-        if (clientes.isEmpty()) {
+        if (contas.isEmpty()) {
             System.out.println("Ainda não foramm cadastrados clientes à lista.");
         } else {
-
-            for (int i = 1; i <= clientes.size(); i++) {
-                Cliente pessoa = cliente.get(i - 1);
+            for (int i = 1; i <= contas.size(); i++) {
+                ContaBancaria pessoa = contas.get(i - 1);
                 System.out.println("(" + i + ")" + pessoa);
             }
         }
     }
 
-    public TipoDocumento LerTipoDocumento(Scanner console){
-        While(true) {
-            try {
-                String tipo = console.nextLine();
-                return TipoDocumento.valueof(tipo.toUpperCase());
-            } catch (IllegalAccessException excecao) {
-                System.out.println("Tipo de documento inválido.");
-            }
 
-        }
-
-    }
-    public TipoPessoa LerTipoPessoa (Scanner console){
+    public TipoPessoa lerTipoPessoa(Scanner console) {
         while (true) {
             try {
-                String tipo = console.nextLine();
-                return;
-                LerTipoPessoa.valueof(tipo.toUpperCase());
-            } catch (IllegalAccessException) {
-                System.out.println("Tipo de pessoa invalido");
+                String tipo = console.nextLine(); //RS
+                return TipoPessoa.valueOf(tipo.toUpperCase());
+            } catch (IllegalArgumentException excecao) {
+                System.out.println("Tipo de pessoa inválido");
             }
-
         }
-
     }
 
     public Long lerLong(Scanner console) {
@@ -145,15 +138,14 @@ public class MenuCriarConta {
                 console.nextLine();
                 return a;
             } catch (InputMismatchException excecao) {
-                System.out.println("Por favoe informar apenas números.");
+                System.out.println("Por favor informar apenas números.");
                 console.nextLine();
-
             }
         }
     }
 
     public Integer lerInt(Scanner console){
-        While(true) {
+        while(true) {
             try {
                 Integer a = console.nextInt();
                 console.nextLine();
@@ -166,47 +158,3 @@ public class MenuCriarConta {
     }
 
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
-            }
-        }
-    }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-    }
-
-
-
-
-

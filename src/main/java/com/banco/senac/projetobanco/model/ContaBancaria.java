@@ -1,14 +1,22 @@
 package com.banco.senac.projetobanco.model;
 
+import com.banco.senac.projetobanco.model.enums.TipoPessoa;
+
 public class ContaBancaria extends Banco{
 
-    private Long id;
+
     private Long numeroConta;
     private Float saldo;
 
     private String nome;
 
     private Integer senha;
+
+    private TipoPessoa tipoPessoa;
+
+    private Long cpf;
+
+    private Endereco endereco;
 
     public ContaBancaria(Long numeroConta, Integer senha) {
         this.numeroConta = numeroConta;
@@ -17,6 +25,12 @@ public class ContaBancaria extends Banco{
 
     public ContaBancaria() {
 
+    }
+
+    public ContaBancaria(String nome, Long cpf, Endereco endereco) {
+        this.nome = nome;
+        this.cpf = cpf;
+        this.endereco = endereco;
     }
 
     public Long getNumeroConta() {
