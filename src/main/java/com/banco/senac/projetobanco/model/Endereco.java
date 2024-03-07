@@ -52,8 +52,8 @@ public class Endereco {
 
     @Override
     public  String toString () {
-        return  "Endereco [uf =" + uf + " , cidade=" + cidade + "cep=" + cep + ", lougradouro=" + logradouro
-                + numero + ", complemento=" + complemento + "bairro=" + bairro + "]";
+        return  "Endereco [uf =" + uf + ", cidade=" + cidade + ", cep=" + cep + ", lougradouro=" + logradouro
+                + numero + ", complemento=" + complemento + ", bairro=" + bairro + "]";
     }
 
     public static Endereco valueof(String endereco) {

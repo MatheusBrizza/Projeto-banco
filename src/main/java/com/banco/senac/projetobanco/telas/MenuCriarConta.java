@@ -10,15 +10,15 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuCriarConta {
+    Scanner console = new Scanner(System.in);
 
     public void imprimirTelaConta() {
-        Scanner console = new Scanner(System.in);
 
         do {
-            System.out.println("digite a opção que deseja:");
-            System.out.println("Opção 1 - cadastrar Clientes (Pessoa Física ou Pessoa Jurídica)");
-            System.out.println("Opção 2 - listar Clientes");
-            System.out.println("Opção 0 - retornar ao Menu Principal");
+            System.out.println("1) cadastrar Conta nova (Pessoa Física ou Pessoa Jurídica)");
+            System.out.println("2) listar Contas");
+            System.out.println("0) retornar ao Menu Principal");
+            System.out.print("Escolha uma opção: ");
 
             int opcao;
 
@@ -31,11 +31,9 @@ public class MenuCriarConta {
             switch (opcao) {
                 case 1:
                     cadastrarConta(console);
-                    System.out.println("1");
                     break;
                 case 2:
-                    listarContas(console);
-                    System.out.println("2");
+                    listarContas();
                     break;
                 case 0:
                     System.out.println("Voltando ao Menu Principal...");
@@ -53,6 +51,9 @@ public class MenuCriarConta {
 
             System.out.println("informar o tipo de pessoa: (fisica ou juridica)");
             TipoPessoa tipoPessoa = lerTipoPessoa(console);
+
+            System.out.println("Digite sua senha:");
+            Integer senha = lerInt(console);
 
             System.out.println("informar a UF do cliente:");
             String uf = console.nextLine().toUpperCase();
@@ -75,7 +76,7 @@ public class MenuCriarConta {
             System.out.println("Informar bairro:");
             String bairro = console.nextLine();
 
-            //Endereco endereco = new Endereco(uf, cidade, cep, logradouro, numero, complemento, bairro);
+            Endereco endereco = new Endereco(uf, cidade, cep, logradouro, numero, complemento, bairro);
 
             if(tipoPessoa.equals(TipoPessoa.FISICA)) {
 
@@ -85,7 +86,8 @@ public class MenuCriarConta {
                 System.out.println("Informar o número do CPF:");
                 Long cpf = lerLong(console);
 
-                ContaBancaria pessoa = new ContaBancaria(nome, cpf);
+
+                ContaBancaria pessoa = new ContaBancaria(nome, cpf, senha, endereco);
                 cadastro.adicionar(pessoa);
 
             } else if (tipoPessoa.equals(TipoPessoa.JURIDICA)) {
@@ -96,7 +98,7 @@ public class MenuCriarConta {
                 System.out.println("informar o CNPJ:");
                 Long cnpj = lerLong(console);
 
-                ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj);
+                ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj, senha, endereco);
                 cadastro.adicionar(empresa);
             } else {
                 System.out.println("Tipo de pessoa errada! escolher entre física ou jurídica");
@@ -107,12 +109,12 @@ public class MenuCriarConta {
         }   while (simOuNao.equalsIgnoreCase("sim"));
     }
 
-    private void listarContas(Scanner console){
+    private void listarContas(){
         CadastrarConta cadastro = CadastrarConta.criar();
         List<ContaBancaria> contas = cadastro.getContas();
 
         if (contas.isEmpty()) {
-            System.out.println("Ainda não foramm cadastrados clientes à lista.");
+            System.out.println("Ainda não foram cadastrados clientes à lista.");
         } else {
             for (int i = 1; i <= contas.size(); i++) {
                 ContaBancaria pessoa = contas.get(i - 1);

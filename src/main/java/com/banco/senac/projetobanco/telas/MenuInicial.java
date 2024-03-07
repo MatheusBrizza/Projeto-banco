@@ -14,7 +14,7 @@ public class MenuInicial {
             System.out.println("2) Criar conta");
             System.out.println("3) Deletar conta");
             System.out.println("0) Sair");
-            System.out.println("Escolha uma opção");
+            System.out.print("Escolha uma opção: ");
 
             int opcao;
 
@@ -36,7 +36,9 @@ public class MenuInicial {
                     tela2.imprimirTelaConta();
                     break;
                 case 3:
-                    System.out.println("Indo para Tela de Locações...");
+                    System.out.println("Excluíndo conta...");
+                    MenuExcluirConta tela3 = new MenuExcluirConta();
+                    tela3.imprimirTelaConta();
                     break;
                 case 0:
                     System.out.println("Programa encarrado...");
