@@ -35,5 +35,7 @@ public class CadastrarConta {
         contas.add(conta);
     }
 
-    public void deletar(ContaBancaria conta) { contas.remove(conta); }
+    public void deletar(ContaBancaria conta) {
+        contas.remove(conta);
+    }
 }

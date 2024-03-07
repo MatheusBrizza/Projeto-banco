@@ -13,6 +13,7 @@ public class MenuExcluirConta {
     ContaBancaria conta;
     CadastrarConta cadastro = CadastrarConta.criar();
     List<ContaBancaria> contas = cadastro.getContas();
+
     public void imprimirTelaConta() {
 
         do {
@@ -46,7 +47,7 @@ public class MenuExcluirConta {
     }
 
     public void excluirConta(Scanner console) {
-        ContaBancaria teste = new ContaBancaria("mat",null,123, TipoPessoa.FISICA,null,123L,null);
+        ContaBancaria teste = new ContaBancaria("mat", null, 123, TipoPessoa.FISICA, null, 123, null);
         cadastro.adicionar(teste);
         System.out.println(contas);
         System.out.print("Informe o NÚMERO da conta que quer excluir: ");
@@ -56,7 +57,7 @@ public class MenuExcluirConta {
         Integer senhaConta = console.nextInt();
         console.nextLine();
         conta = contas.stream().filter(contaBancaria -> {
-            return contaBancaria.getNumeroConta() == numConta && contaBancaria.getSenha() == senhaConta;
+            return contaBancaria.getNumeroConta() == numConta && contaBancaria.getSenha().equals(senhaConta);
         }).toList().get(0);
         if (conta != null) {
             System.out.println("Conta bancária de nº " + conta.getNumeroConta() + " foi removida com sucesso!");
@@ -64,7 +65,7 @@ public class MenuExcluirConta {
         }
     }
 
-    private void listarContas(){
+    private void listarContas() {
 
         if (contas.isEmpty()) {
             System.out.println("Ainda não foram cadastrados clientes à lista.");

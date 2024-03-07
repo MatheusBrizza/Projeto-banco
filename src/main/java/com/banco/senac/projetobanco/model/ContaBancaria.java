@@ -2,7 +2,7 @@ package com.banco.senac.projetobanco.model;
 
 import com.banco.senac.projetobanco.model.enums.TipoPessoa;
 
-public class ContaBancaria extends Banco{
+public class ContaBancaria extends Banco {
 
 
     private Integer numeroConta;
@@ -19,7 +19,7 @@ public class ContaBancaria extends Banco{
 
     private Long cnpj;
 
-    private Long cpf;
+    private Integer cpf;
 
     private Endereco endereco;
 
@@ -32,8 +32,8 @@ public class ContaBancaria extends Banco{
 
     }
 
-    public ContaBancaria(String nome, String razaoSocial, Integer senha, TipoPessoa tipoPessoa, Long cnpj, Long cpf, Endereco endereco) {
-        this.numeroConta = (int)(Math.random()*10000);
+    public ContaBancaria(String nome, String razaoSocial, Integer senha, TipoPessoa tipoPessoa, Long cnpj, Integer cpf, Endereco endereco) {
+        this.numeroConta = (int) (Math.random() * 10000);
         this.saldo = 0.0;
         this.nome = nome;
         this.razaoSocial = razaoSocial;
@@ -44,15 +44,25 @@ public class ContaBancaria extends Banco{
         this.endereco = endereco;
     }
 
-    public ContaBancaria(String nome, Long cpf, Integer senha, Endereco endereco) {
-        this.numeroConta = (int)(Math.random()*10000);
+    public ContaBancaria(String nome, Integer cpf, Integer senha, Endereco endereco) {
+        this.numeroConta = (int) (Math.random() * 10000);
         this.saldo = 0.0;
+        this.tipoPessoa = TipoPessoa.FISICA;
         this.nome = nome;
         this.cpf = cpf;
         this.senha = senha;
         this.endereco = endereco;
     }
 
+    public ContaBancaria(String razaoSocial, Long cnpj, Integer senha, Endereco endereco) {
+        this.numeroConta = (int) (Math.random() * 10000);
+        this.saldo = 0.0;
+        this.tipoPessoa = TipoPessoa.JURIDICA;
+        this.razaoSocial = razaoSocial;
+        this.cnpj = cnpj;
+        this.senha = senha;
+        this.endereco = endereco;
+    }
 
     public int getNumeroConta() {
         return numeroConta;
@@ -61,6 +71,7 @@ public class ContaBancaria extends Banco{
     public void setNumeroConta(Integer numeroConta) {
         this.numeroConta = numeroConta;
     }
+
     public Double getSaldo() {
         return saldo;
     }
@@ -77,21 +88,37 @@ public class ContaBancaria extends Banco{
         this.senha = senha;
     }
 
-    public String getNome() { return nome; }
+    public String getNome() {
+        return nome;
+    }
 
-    public void setNome(String nome) { this.nome = nome; }
+    public void setNome(String nome) {
+        this.nome = nome;
+    }
 
-    public TipoPessoa getTipoPessoa() { return tipoPessoa; }
+    public TipoPessoa getTipoPessoa() {
+        return tipoPessoa;
+    }
 
-    public void setTipoPessoa(TipoPessoa tipoPessoa) { this.tipoPessoa = tipoPessoa; }
+    public void setTipoPessoa(TipoPessoa tipoPessoa) {
+        this.tipoPessoa = tipoPessoa;
+    }
 
-    public Long getCpf() { return cpf; }
+    public Integer getCpf() {
+        return cpf;
+    }
 
-    public void setCpf(Long cpf) { this.cpf = cpf; }
+    public void setCpf(Integer cpf) {
+        this.cpf = cpf;
+    }
 
-    public Endereco getEndereco() { return endereco; }
+    public Endereco getEndereco() {
+        return endereco;
+    }
 
-    public void setEndereco(Endereco endereco) { this.endereco = endereco; }
+    public void setEndereco(Endereco endereco) {
+        this.endereco = endereco;
+    }
 
 
     @Override
@@ -114,15 +141,14 @@ public class ContaBancaria extends Banco{
             System.out.println("Valor a depositar não pode ser 0 ou negativo");
         } else
             saldo += valor;
-            return saldo;
-
+        return saldo;
     }
 
     public double sacar(Float valor) {
-        if((saldo - valor) < 0) {
+        if ((saldo - valor) < 0) {
             System.out.println("Valor a sacar não pode ser maior que o saldo na conta");
         } else
             saldo -= valor;
-            return saldo;
+        return saldo;
     }
 }

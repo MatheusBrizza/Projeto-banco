@@ -42,10 +42,10 @@ public class MenuCriarConta {
                     System.out.println("Opção inválida.");
             }
         } while (true);
-
     }
-    private void cadastrarConta(Scanner console){
-        String simOuNao = "";
+
+    private void cadastrarConta(Scanner console) {
+        String simOuNao;
         do {
             CadastrarConta cadastro = CadastrarConta.criar();
 
@@ -78,13 +78,13 @@ public class MenuCriarConta {
 
             Endereco endereco = new Endereco(uf, cidade, cep, logradouro, numero, complemento, bairro);
 
-            if(tipoPessoa.equals(TipoPessoa.FISICA)) {
+            if (tipoPessoa.equals(TipoPessoa.FISICA)) {
 
                 System.out.println("informar o Nome:");
                 String nome = console.next();
 
                 System.out.println("Informar o número do CPF:");
-                Long cpf = lerLong(console);
+                Integer cpf = lerInt(console);
 
 
                 ContaBancaria pessoa = new ContaBancaria(nome, cpf, senha, endereco);
@@ -106,10 +106,10 @@ public class MenuCriarConta {
 
             System.out.println("deseja cadastrar outro cliente?");
             simOuNao = console.nextLine();
-        }   while (simOuNao.equalsIgnoreCase("sim"));
+        } while (simOuNao.equalsIgnoreCase("sim"));
     }
 
-    private void listarContas(){
+    private void listarContas() {
         CadastrarConta cadastro = CadastrarConta.criar();
         List<ContaBancaria> contas = cadastro.getContas();
 
@@ -148,8 +148,8 @@ public class MenuCriarConta {
         }
     }
 
-    public Integer lerInt(Scanner console){
-        while(true) {
+    public Integer lerInt(Scanner console) {
+        while (true) {
             try {
                 Integer a = console.nextInt();
                 console.nextLine();
