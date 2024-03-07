@@ -2,6 +2,7 @@ package com.banco.senac.projetobanco.telas;
 
 import com.banco.senac.projetobanco.database.CadastrarConta;
 import com.banco.senac.projetobanco.model.ContaBancaria;
+import com.banco.senac.projetobanco.model.Endereco;
 import com.banco.senac.projetobanco.model.enums.TipoPessoa;
 
 import java.util.InputMismatchException;
@@ -33,6 +34,7 @@ public class MenuCriarConta {
                     System.out.println("1");
                     break;
                 case 2:
+                    listarContas(console);
                     System.out.println("2");
                     break;
                 case 0:
@@ -73,7 +75,7 @@ public class MenuCriarConta {
             System.out.println("Informar bairro:");
             String bairro = console.nextLine();
 
-            Endereco endereco = new Endereco(uf,cidade, cep, logradouro, numero, complemento,bairro);
+            //Endereco endereco = new Endereco(uf, cidade, cep, logradouro, numero, complemento, bairro);
 
             if(tipoPessoa.equals(TipoPessoa.FISICA)) {
 
@@ -83,7 +85,7 @@ public class MenuCriarConta {
                 System.out.println("Informar o número do CPF:");
                 Long cpf = lerLong(console);
 
-                ContaBancaria pessoa = new ContaBancaria(nome, cpf, endereco);
+                ContaBancaria pessoa = new ContaBancaria(nome, cpf);
                 cadastro.adicionar(pessoa);
 
             } else if (tipoPessoa.equals(TipoPessoa.JURIDICA)) {
@@ -94,7 +96,7 @@ public class MenuCriarConta {
                 System.out.println("informar o CNPJ:");
                 Long cnpj = lerLong(console);
 
-                ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj, endereco);
+                ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj);
                 cadastro.adicionar(empresa);
             } else {
                 System.out.println("Tipo de pessoa errada! escolher entre física ou jurídica");
@@ -105,7 +107,7 @@ public class MenuCriarConta {
         }   while (simOuNao.equalsIgnoreCase("sim"));
     }
 
-    private void listarClientes(Scanner console){
+    private void listarContas(Scanner console){
         CadastrarConta cadastro = CadastrarConta.criar();
         List<ContaBancaria> contas = cadastro.getContas();
 

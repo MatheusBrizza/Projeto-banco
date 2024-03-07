@@ -27,7 +27,18 @@ public class ContaBancaria extends Banco{
 
     }
 
-    public ContaBancaria(String nome, Long cpf, Endereco endereco) {
+    public ContaBancaria(ContaBancaria contaBancaria, Long numeroConta, Float saldo, String nome, Integer senha, TipoPessoa tipoPessoa, Long cpf, Endereco endereco) {
+        super(contaBancaria);
+        this.numeroConta = numeroConta;
+        this.saldo = saldo;
+        this.nome = nome;
+        this.senha = senha;
+        this.tipoPessoa = tipoPessoa;
+        this.cpf = cpf;
+        this.endereco = endereco;
+    }
+
+    public ContaBancaria(String nome, Long cpf) {
         this.nome = nome;
         this.cpf = cpf;
         this.endereco = endereco;
@@ -53,9 +64,26 @@ public class ContaBancaria extends Banco{
         this.senha = senha;
     }
 
+    public void setNumeroConta(Long numeroConta) {
+        this.numeroConta = numeroConta;
+    }
+
     public Float depositar(Float valor) {
         saldo += saldo + valor;
         return saldo;
+    }
+
+    @Override
+    public String toString() {
+        return "ContaBancaria{" +
+                "numeroConta=" + numeroConta +
+                ", saldo=" + saldo +
+                ", nome='" + nome + '\'' +
+                ", senha=" + senha +
+                ", tipoPessoa=" + tipoPessoa +
+                ", cpf=" + cpf +
+                ", endereco=" + endereco +
+                '}';
     }
 
     public Float sacar(Float valor) {
