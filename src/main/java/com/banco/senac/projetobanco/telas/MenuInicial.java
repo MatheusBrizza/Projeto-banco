@@ -4,9 +4,9 @@ import java.util.InputMismatchException;
 import java.util.Scanner;
 
 public class MenuInicial {
-
+    Scanner console = new Scanner(System.in);
     public void imprimirMenuInicial() {
-        Scanner console = new Scanner(System.in);
+
 
         do {
             System.out.println("Bem vindo ao Banco Senac Tech");

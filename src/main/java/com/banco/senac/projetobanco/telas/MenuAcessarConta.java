@@ -26,57 +26,17 @@ public class MenuAcessarConta {
         System.out.print("Informe a senha da conta: ");
         senhaConta = console.nextInt();
         console.nextLine();
-//            try {
-        conta = contas.stream().filter(contaBancaria -> {
-            return contaBancaria.getNumeroConta() == numConta && contaBancaria.getSenha() == senhaConta;
-        }).toList().get(0);
-
-        //          } catch (ArrayIndexOutOfBoundsException e) {
-        if (conta != null) {
-            imprimirTelaAcessarConta();
-                   /*do {
-                       System.out.println("Menu de Conta:");
-                       System.out.println("1) Ver saldo");
-                       System.out.println("2) Sacar");
-                       System.out.println("3) Depositar");
-                       System.out.println("4) Ver informações do cliente");
-                       System.out.println("5) Alterar senha");
-                       System.out.println("0) Voltar");
-                       System.out.print("Digite uma opção: ");
-
-                       int opcao;
-
-                       try {
-                           opcao = console.nextInt();
-                           console.nextLine();
-                       } catch (InputMismatchException excecao) {
-                           opcao = -1;
-                       }
-                       switch (opcao) {
-                           case 1:
-                               mostrarSaldo();
-                               break;
-                           case 2:
-                               sacar(console);
-                               break;
-                           case 3:
-                               depositar(console);
-                               break;
-                           case 4:
-                               mostrarDados();
-                               break;
-                           case 5:
-                               alterarSenha(console);
-                               break;
-                           case 0:
-                               System.out.println("Voltando ao Menu Principal...");
-                               return;
-                           default:
-                               System.out.println("Opção inválida.");
-                       }
-                   }while (true);*/
+        try {
+            conta = contas.stream().filter(contaBancaria -> {
+                return contaBancaria.getNumeroConta() == numConta && contaBancaria.getSenha() == senhaConta;
+            }).toList().get(0);
+            if (conta != null) {
+                imprimirTelaAcessarConta();
+            }
+        } catch (ArrayIndexOutOfBoundsException e) {
+            System.out.println("Conta não encontrada, certifique-se que ela existe!");
         }
-        //         }
+
     }
 
     public void imprimirTelaAcessarConta() {
@@ -88,7 +48,7 @@ public class MenuAcessarConta {
             System.out.println("4) Ver informações do cliente");
             System.out.println("5) Alterar senha");
             System.out.println("0) Voltar");
-
+            System.out.print("Digite uma opção: ");
             int opcao;
 
             try {
@@ -123,7 +83,9 @@ public class MenuAcessarConta {
     }
 
     public void mostrarSaldo() {
+        System.out.println("========================");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
+        System.out.println("========================");
     }
 
     public void sacar(Scanner console) {
@@ -131,7 +93,9 @@ public class MenuAcessarConta {
         Float valor = console.nextFloat();
         console.nextLine();
         conta.sacar(valor);
+        System.out.println("========================");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
+        System.out.println("========================");
     }
 
     public void depositar(Scanner console) {
@@ -139,7 +103,9 @@ public class MenuAcessarConta {
         Float valor = console.nextFloat();
         console.nextLine();
         conta.depositar(valor);
+        System.out.println("========================");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
+        System.out.println("========================");
     }
 
     public void mostrarDados() {

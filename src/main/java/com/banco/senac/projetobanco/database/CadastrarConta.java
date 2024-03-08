@@ -28,9 +28,6 @@ public class CadastrarConta {
         return contas;
     }
 
-    //função para buscar se tem número da conta na lista de contas
-    //public boolean getNumeroConta(int numConta) { return contas.contains(numConta); }
-
     public void adicionar(ContaBancaria conta) {
         contas.add(conta);
     }

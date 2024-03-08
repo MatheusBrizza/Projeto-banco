@@ -2,7 +2,7 @@ package com.banco.senac.projetobanco.model;
 
 import com.banco.senac.projetobanco.model.enums.TipoPessoa;
 
-public class ContaBancaria extends Banco {
+public class ContaBancaria {
 
 
     private Integer numeroConta;
@@ -23,13 +23,7 @@ public class ContaBancaria extends Banco {
 
     private Endereco endereco;
 
-    public ContaBancaria(Integer numeroConta, Integer senha) {
-        this.numeroConta = numeroConta;
-        this.senha = senha;
-    }
-
     public ContaBancaria() {
-
     }
 
     public ContaBancaria(String nome, String razaoSocial, Integer senha, TipoPessoa tipoPessoa, Long cnpj, Integer cpf, Endereco endereco) {
@@ -146,7 +140,9 @@ public class ContaBancaria extends Banco {
 
     public double sacar(Float valor) {
         if ((saldo - valor) < 0) {
+            System.out.println("=====================================================");
             System.out.println("Valor a sacar não pode ser maior que o saldo na conta");
+            System.out.println("=====================================================");
         } else
             saldo -= valor;
         return saldo;
