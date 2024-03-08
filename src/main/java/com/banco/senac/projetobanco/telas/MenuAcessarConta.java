@@ -94,6 +94,7 @@ public class MenuAcessarConta {
         console.nextLine();
         conta.sacar(valor);
         System.out.println("========================");
+        System.out.println("Saque realizado com sucesso!");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
         System.out.println("========================");
     }
@@ -104,6 +105,7 @@ public class MenuAcessarConta {
         console.nextLine();
         conta.depositar(valor);
         System.out.println("========================");
+        System.out.print("Depósito realizado com sucesso!");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
         System.out.println("========================");
     }
@@ -116,6 +118,8 @@ public class MenuAcessarConta {
         System.out.print("Informe a nova senha: ");
         Integer senhaNova = console.nextInt();
         conta.setSenha(senhaNova);
+        System.out.println("========================");
         System.out.println("senha alterada!");
+        System.out.println("========================");
     }
 }

@@ -17,8 +17,8 @@ public class MenuExcluirConta {
     public void imprimirTelaConta() {
 
         do {
-            System.out.println("1) cadastrar Conta nova (Pessoa Física ou Pessoa Jurídica)");
-            System.out.println("2) listar Contas");
+            System.out.println("1) Excluir conta");
+            System.out.println("2) listar Contas existentes");
             System.out.println("0) retornar ao Menu Principal");
             System.out.print("Escolha uma opção: ");
 
