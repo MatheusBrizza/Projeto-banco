@@ -12,6 +12,7 @@ import java.util.Scanner;
 public class MenuCriarConta {
     Scanner console = new Scanner(System.in);
 
+    //função para imprimir o menu de cadastrar contas
     public void imprimirTelaConta() {
 
         do {
@@ -44,6 +45,7 @@ public class MenuCriarConta {
         } while (true);
     }
 
+    //função para cadastrar contas e salvar na lista de banco de dados
     private void cadastrarConta(Scanner console) {
         String simOuNao;
         do {
@@ -100,8 +102,6 @@ public class MenuCriarConta {
 
                 ContaBancaria empresa = new ContaBancaria(razaoSocial, cnpj, senha, endereco);
                 cadastro.adicionar(empresa);
-            } else {
-                System.out.println("Tipo de pessoa errada! escolher entre física ou jurídica");
             }
 
             System.out.println("deseja cadastrar outro cliente?");
@@ -109,6 +109,7 @@ public class MenuCriarConta {
         } while (simOuNao.equalsIgnoreCase("sim"));
     }
 
+    //função para mostrar contas salvas na lista
     private void listarContas() {
         CadastrarConta cadastro = CadastrarConta.criar();
         List<ContaBancaria> contas = cadastro.getContas();
@@ -123,11 +124,11 @@ public class MenuCriarConta {
         }
     }
 
-
+    //função para validar que foi digitado um tipo de pessoa válido (física ou jurídica)
     public TipoPessoa lerTipoPessoa(Scanner console) {
         while (true) {
             try {
-                String tipo = console.nextLine(); //RS
+                String tipo = console.nextLine();
                 return TipoPessoa.valueOf(tipo.toUpperCase());
             } catch (IllegalArgumentException excecao) {
                 System.out.println("Tipo de pessoa inválido");
@@ -135,6 +136,7 @@ public class MenuCriarConta {
         }
     }
 
+    // função para validar que não foram digitados letras num campo que recebe apenas números
     public Long lerLong(Scanner console) {
         while (true) {
             try {
@@ -148,6 +150,7 @@ public class MenuCriarConta {
         }
     }
 
+    // função para validar que não foram digitados letras num campo que recebe apenas números
     public Integer lerInt(Scanner console) {
         while (true) {
             try {

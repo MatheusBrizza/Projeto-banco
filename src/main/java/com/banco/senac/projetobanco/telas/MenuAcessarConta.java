@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuAcessarConta {
+    //atributos da classe
     int numConta;
     int senhaConta;
     ContaBancaria conta;
@@ -16,6 +17,7 @@ public class MenuAcessarConta {
     CadastrarConta cadastro = CadastrarConta.criar();
     List<ContaBancaria> contas = cadastro.getContas();
 
+    //função para acessar uma conta informando o número e senha e validar tal conta existe na lista
     public void AcessarConta() {
         ContaBancaria teste = new ContaBancaria("mat", null, 123, TipoPessoa.FISICA, null, 123, null);
         cadastro.adicionar(teste);
@@ -38,7 +40,7 @@ public class MenuAcessarConta {
         }
 
     }
-
+    //função para mostrar menu da conta
     public void imprimirTelaAcessarConta() {
         do {
             System.out.println("Menu de Conta:");
@@ -82,12 +84,14 @@ public class MenuAcessarConta {
         } while (true);
     }
 
+    //Menu para mostrar saldo da conta
     public void mostrarSaldo() {
         System.out.println("========================");
         System.out.println("Saldo atual: R$" + conta.getSaldo());
         System.out.println("========================");
     }
 
+    //função para informar o valor que quer retirar da conta e imprime o saldo novo
     public void sacar(Scanner console) {
         System.out.print("Informe o valor que deseja sacar:");
         Float valor = console.nextFloat();
@@ -99,6 +103,7 @@ public class MenuAcessarConta {
         System.out.println("========================");
     }
 
+    //função para informar o valor que quer depositar na conta e imprime o saldo novo
     public void depositar(Scanner console) {
         System.out.print("Informe o valor que deseja depositar:");
         Float valor = console.nextFloat();
@@ -110,10 +115,12 @@ public class MenuAcessarConta {
         System.out.println("========================");
     }
 
+    //função para mostrar os dados pessoais da conta
     public void mostrarDados() {
         System.out.println(conta.toString());
     }
 
+    //função para alterar senha da conta
     public void alterarSenha(Scanner console) {
         System.out.print("Informe a nova senha: ");
         Integer senhaNova = console.nextInt();

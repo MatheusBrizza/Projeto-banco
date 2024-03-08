@@ -9,11 +9,14 @@ import java.util.List;
 import java.util.Scanner;
 
 public class MenuExcluirConta {
+
+    //atributos da classe
     Scanner console = new Scanner(System.in);
     ContaBancaria conta;
     CadastrarConta cadastro = CadastrarConta.criar();
     List<ContaBancaria> contas = cadastro.getContas();
 
+    //função para imprimir o menu de excluir contas no console
     public void imprimirTelaConta() {
 
         do {
@@ -45,7 +48,7 @@ public class MenuExcluirConta {
             }
         } while (true);
     }
-
+    //função para excluir uma conta criada passando o número e a senha
     public void excluirConta(Scanner console) {
         ContaBancaria teste = new ContaBancaria("mat", null, 123, TipoPessoa.FISICA, null, 123, null);
         cadastro.adicionar(teste);
@@ -60,11 +63,14 @@ public class MenuExcluirConta {
             return contaBancaria.getNumeroConta() == numConta && contaBancaria.getSenha().equals(senhaConta);
         }).toList().get(0);
         if (conta != null) {
+            System.out.println("=====================================================");
             System.out.println("Conta bancária de nº " + conta.getNumeroConta() + " foi removida com sucesso!");
+            System.out.println("=====================================================");
             cadastro.deletar(conta);
         }
     }
 
+    // função para listar as contas salvas na lista
     private void listarContas() {
 
         if (contas.isEmpty()) {

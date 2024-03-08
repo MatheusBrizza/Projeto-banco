@@ -4,7 +4,7 @@ import com.banco.senac.projetobanco.model.enums.TipoPessoa;
 
 public class ContaBancaria {
 
-
+    //Atributos da classe
     private Integer numeroConta;
 
     private Double saldo;
@@ -23,6 +23,7 @@ public class ContaBancaria {
 
     private Endereco endereco;
 
+    //Construtores
     public ContaBancaria() {
     }
 
@@ -57,7 +58,7 @@ public class ContaBancaria {
         this.senha = senha;
         this.endereco = endereco;
     }
-
+    //Getters e Setters
     public int getNumeroConta() {
         return numeroConta;
     }
@@ -114,7 +115,7 @@ public class ContaBancaria {
         this.endereco = endereco;
     }
 
-
+    //função para imprimir o conteúdo do objeto em formato de String
     @Override
     public String toString() {
         return "ContaBancaria{" +
@@ -130,14 +131,18 @@ public class ContaBancaria {
                 '}';
     }
 
+    //função para somar o valor informado ao saldo já existente e validar que o valor não seja 0 ou negativo
     public double depositar(Float valor) {
         if (valor < 1) {
+            System.out.println("=====================================================");
             System.out.println("Valor a depositar não pode ser 0 ou negativo");
+            System.out.println("=====================================================");
         } else
             saldo += valor;
         return saldo;
     }
 
+    //função para subtrair o valor informado do saldo existente e validar que o valor não é maior que o saldo.
     public double sacar(Float valor) {
         if ((saldo - valor) < 0) {
             System.out.println("=====================================================");
